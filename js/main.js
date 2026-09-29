@@ -8,9 +8,9 @@
     try { localStorage.setItem("theme", next); } catch (e) {}
   });
 
-  var lines = ["Sketching a few layouts…", "Picking fonts (this takes a while)…", "Arguing with margins…",
-    "Rewriting the About section, again…", "Adding just enough personality…", "Making tea. Back soon."];
+  var lines = Array.prototype.map.call(document.querySelectorAll("#status-lines li"), function (li) { return li.textContent; });
   var el = document.getElementById("status"), i = 0;
+  if (lines.length < 2) return;
   if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   setInterval(function () {
     el.classList.add("out");
