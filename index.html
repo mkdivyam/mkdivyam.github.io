@@ -2,166 +2,49 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Finding the Unknown with Algebra — Submission</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Divyanshu Medatwal</title>
 <style>
-  :root{
-    --blue:#1a73c7; --ink:#2a2430; --stepper:#1a4fa0;
-    --pink1:#c0304a; --pink2:#e07b93; --pink3:#f6c9d2; --pink4:#fbe3e0;
-  }
-  *{box-sizing:border-box;}
-  body{margin:0;font-family:'Segoe UI',system-ui,Helvetica,Arial,sans-serif;color:var(--ink);
-     background:linear-gradient(160deg,#f3d9e6 0%,#e7d3ee 45%,#dcd6f0 100%);position:relative;overflow-x:hidden;}
-  body::before{content:'';position:fixed;top:-120px;left:-140px;width:420px;height:420px;border-radius:50%;
-     background:radial-gradient(circle,#ffffff55,transparent 70%);z-index:0;}
-  body::after{content:'';position:fixed;bottom:-160px;right:-160px;width:480px;height:480px;border-radius:50%;
-     background:radial-gradient(circle,#ffffff40,transparent 70%);z-index:0;}
-  .bar{background:var(--blue);color:#fff;padding:20px 32px;display:flex;justify-content:space-between;align-items:center;
-     position:relative;z-index:1;}
-  .bar h1{margin:0;font-size:1.35rem;}
-  .logo{width:44px;height:44px;border-radius:11px;object-fit:contain;}
-  .wrap{max-width:920px;margin:0 auto;padding:0 24px 60px;position:relative;z-index:1;}
-  .meta{display:flex;gap:12px;flex-wrap:wrap;margin:22px 0 6px;}
-  .pill{background:#fff;border-radius:30px;padding:8px 18px;font-size:.85rem;font-weight:600;box-shadow:0 2px 8px #0002;}
-  .pill.todo{background:#ffe1a8;color:#7a4a00;border:1px dashed #c98a00;}
-  .card{background:#fff;border-radius:14px;box-shadow:0 4px 16px #0001;margin-top:26px;overflow:hidden;}
-  .card h2{margin:0;background:linear-gradient(90deg,var(--pink1),var(--pink2));color:#fff;padding:14px 24px;font-size:1.1rem;}
-  .card .body{padding:20px 26px;}
-  ul{padding-left:20px;margin:6px 0;} li{margin-bottom:6px;}
-  a.link{color:var(--blue);font-weight:600;text-decoration:none;} a.link:hover{text-decoration:underline;}
-  .ov-line{display:flex;gap:10px;margin-bottom:8px;}
-  .ov-line b{min-width:130px;color:var(--pink1);}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-  .dcard{background:var(--pink4);border-radius:10px;padding:14px 16px;}
-  .dcard .t{font-weight:700;margin-bottom:10px;}
-  .btnrow{display:flex;gap:8px;flex-wrap:wrap;}
-  .btn{display:inline-block;border-radius:20px;padding:7px 14px;font-size:.82rem;font-weight:700;text-decoration:none;color:#fff;}
-  .btn.b1{background:var(--stepper);} .btn.b2{background:var(--pink1);} .btn.b3{background:#3f8f4a;}
-  .refs{font-size:.85rem;color:#555;margin-top:16px;}
-  .step{border-radius:10px;padding:14px 18px;margin-bottom:14px;}
-  .step .k{font-weight:800;font-size:.78rem;letter-spacing:.05em;text-transform:uppercase;opacity:.75;margin-bottom:4px;}
-  .step.hook{background:#eef1fc;}
-  .step.a1{background:#e7f0fb;border-left:5px solid var(--stepper);}
-  .step.a2{background:#fce9ec;border-left:5px solid var(--pink1);}
-  .step.misc{background:#f3f0fb;}
-  .aha{background:linear-gradient(135deg,var(--pink1),var(--pink2));color:#fff;border-radius:10px;padding:16px 20px;margin-top:6px;}
-  .aha .k{font-weight:800;font-size:.95rem;}
-  .note{background:#f3f4f6;border-left:4px solid var(--stepper);padding:10px 16px;margin-top:14px;font-size:.9rem;border-radius:0 8px 8px 0;}
+:root {
+  --bg: #f6f4ef;
+  --fg: #16161a;
+  --muted: #7a7a80;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --bg: #0f0f12; --fg: #f2f0ea; --muted: #8b8b92; }
+}
+:root[data-theme="dark"] { --bg: #0f0f12; --fg: #f2f0ea; --muted: #8b8b92; }
+html, body { height: 100%; margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--fg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  padding: 0 24px;
+}
+h1 {
+  margin: 0;
+  font-size: clamp(2rem, 7vw, 4.5rem);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+p {
+  margin: 1rem 0 0;
+  font-size: clamp(1rem, 2.5vw, 1.5rem);
+  color: var(--muted);
+  letter-spacing: 0.02em;
+}
 </style>
 </head>
 <body>
-<div class="bar">
-  <h1>Finding the Unknown with Algebra</h1>
-  <img class="logo" src="data:image/png;base64,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" alt="ClassRoots Edu">
-</div>
-<div class="wrap">
-
-  <div class="meta">
-    <span class="pill">👤 Submitted by: Divyanshu Medatwal</span>
-    <span class="pill">📅 Submission date: 24 September 2026</span>
-    <span class="pill">🏫 Prepared for: ClassRoots Edu</span>
-  </div>
-
-  <div class="card">
-    <h2>📘 Module Overview</h2>
-    <div class="body">
-      <div class="ov-line"><b>Chapter</b> Algebra Play — NCERT / Ganita Prakash, Grade 8, Part II, Ch. 6</div>
-      <div class="ov-line"><b>Custom module</b> "Finding the Unknown with Algebra"</div>
-      <div class="ov-line"><b>Duration</b> ~20–25 min, teacher-led, plug-and-play</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>🔗 Deliverables</h2>
-    <div class="body">
-      <div class="grid">
-        <div class="dcard"><div class="t">📁 Asset Folder</div>
-          <div class="btnrow"><a class="btn b1" href="https://drive.google.com/drive/folders/1L3g_eIXjz5K3BQj79YOkZNfya2CbSvOq?usp=drive_link" target="_blank" rel="noopener">Open Folder</a></div></div>
-        <div class="dcard"><div class="t">📝 Activity &amp; Decision Log</div>
-          <div class="btnrow"><a class="btn b1" href="https://drive.google.com/file/d/1CrNoXH7qQrZIgx2mn1Ohbuv8exo8tX3j/view?usp=drive_link" target="_blank" rel="noopener">View Log</a></div></div>
-        <div class="dcard"><div class="t">🖥️ Tutor-led Session (PPT)</div>
-          <div class="btnrow"><a class="btn b1" href="https://docs.google.com/presentation/d/1hHK9r0I8-L3NinIo1BsyJQqNIWIUp-9S/edit?usp=drive_link" target="_blank" rel="noopener">Open PPT</a></div></div>
-        <div class="dcard"><div class="t">🎬 Video Reference</div>
-          <div class="btnrow"><a class="btn b1" href="https://www.youtube.com/watch?v=YcKBFfhopDI" target="_blank" rel="noopener">Watch Video</a></div></div>
-        <div class="dcard"><div class="t">🍎 Applet 1 — Find the Count of Each Fruit</div>
-          <div class="btnrow">
-            <a class="btn b3" href="https://mkdivyam.github.io/classroots_assignment/applet_1.html" target="_blank" rel="noopener">🌐 Play Online</a>
-            <a class="btn b1" href="https://drive.google.com/file/d/1JFysxAQm7xZBUJgYMKISX-magwLxVnsf/view?usp=drive_link" target="_blank" rel="noopener">⬇ HTML File</a>
-            <a class="btn b2" href="https://docs.google.com/presentation/d/1ynT_802LthmldR8FTwz_7H0CA07tHJPs/edit?usp=drive_link" target="_blank" rel="noopener">🖼 Storyboard</a>
-          </div></div>
-        <div class="dcard"><div class="t">🔐 Applet 2 — Decode the Passcode</div>
-          <div class="btnrow">
-            <a class="btn b3" href="https://mkdivyam.github.io/classroots_assignment/applet_2.html" target="_blank" rel="noopener">🌐 Play Online</a>
-            <a class="btn b1" href="https://drive.google.com/file/d/1ExVXCqCkFc80btsOoBI4-GPQmLwq8jke/view?usp=drive_link" target="_blank" rel="noopener">⬇ HTML File</a>
-            <a class="btn b2" href="https://docs.google.com/presentation/d/1mUGVB1WVkRST9wTP5L85CYbpcUHAh_N3/edit?usp=drive_link" target="_blank" rel="noopener">🖼 Storyboard</a>
-          </div></div>
-        <div class="dcard"><div class="t">💬 Full LLM Conversation</div>
-          <div class="btnrow"><a class="btn b1" href="https://claude.ai/share/6f16235e-35d0-4297-ba3f-36f6b620cae1" target="_blank" rel="noopener">View Chat</a></div></div>
-      </div>
-      <div class="refs">References: <a class="link" href="https://ncert.nic.in/textbook/pdf/hegp206.pdf" target="_blank" rel="noopener">NCERT Textbook — Algebra Play</a> ·
-      <a class="link" href="https://whatwedo.classrootsedu.in/?k=OuCPdgQrKi3M7BUTRuxPz7nU743_sbTf" target="_blank" rel="noopener">Job description &amp; task brief</a></div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>🎯 Learning Objectives</h2>
-    <div class="body"><ul>
-      <li>Frame algebraic equations corresponding to a scenario and operate on them.</li>
-      <li>Perform algebraic operations across equations with multiple variables.</li>
-      <li>Calculate the value of variables from an equation, or a group of equations.</li>
-      <li>Identify algebraic patterns in riddles/puzzles and solve them.</li>
-      <li>Solve linear equations in two variables.</li>
-    </ul></div>
-  </div>
-
-  <div class="card">
-    <h2>✅ Assumed Prerequisites</h2>
-    <div class="body"><ul>
-      <li>Can form an algebraic expression from a described scenario.</li>
-      <li>Can solve a linear equation in one variable.</li>
-    </ul></div>
-  </div>
-
-  <div class="card">
-    <h2>📐 Grade &amp; Curriculum Alignment</h2>
-    <div class="body"><p>Sits within NCERT Grade 8's "Algebra Play," extending the chapter's own letter-number reasoning (Number Pyramids,
-    Fun with Grids) into two-variable, real-world systems — the same style as the chapter's end-of-section problems (e.g. horses-and-hens,
-    calendar magic), built out as a taught, interactive experience rather than a written exercise. The sequence deliberately departs from
-    the textbook's section order to build toward two-variable systems purposefully, rather than sampling every section.</p></div>
-  </div>
-
-  <div class="card">
-    <h2>🧭 The Teaching Journey</h2>
-    <div class="body">
-      <div class="step hook"><div class="k">Hook</div>A relatable checkout puzzle — Rajesh needs the right mix of fruits to match a known weight and price.</div>
-      <div class="step a1"><div class="k">Core Interaction · Applet 1</div>Adjust quantities, see immediate weight/price feedback, discover guess-and-check works but is slow.</div>
-      <div class="step a2"><div class="k">Core Interaction · Applet 2</div>A two-stage system — solve for unit weights first, then use a third constraint to pin down exact counts, then encode the result as a passcode.</div>
-      <div class="step misc"><div class="k">Misconception Targeted</div>That problems with more than one unknown can only be solved by trial and error.</div>
-      <div class="aha"><div class="k">💡 Aha!</div>One equation can't pin down two unknowns — there are always many pairs that fit. To solve for two unknowns, you need at least two equations. That's the one idea both puzzles are built to reveal.</div>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2>🤖 How the LLM Was Used</h2>
-    <div class="body"><ul>
-      <li>Scope was defined upfront: chapter/module selection, storyboard design (in PPT), pedagogical decisions, the tutor PPT, and the activity log were done independently; Claude's role was building the interactive HTML from those storyboards, sanity-checking the math, and this submission page.</li>
-      <li>Both applets were built by iterating in screenshot-and-fix cycles against the hand-made storyboards, not generated from scratch.</li>
-      <li>This process caught a genuine flaw in Applet 2's puzzle math (two valid solutions where only one was intended) before it reached a final build.</li>
-    </ul></div>
-  </div>
-
-  <div class="card">
-    <h2>🛠️ Developer Notes</h2>
-    <div class="body">
-      <ul>
-        <li>Both applets are single self-contained HTML files — no external assets or network calls — for safe offline, plug-and-play classroom use.</li>
-        <li>Built to a fixed 1220×690 canvas that scales to fit any screen without scrolling; shared color and layout conventions across both applets for visual consistency under the ClassRoots Edu brand.</li>
-      </ul>
-      <div class="note">Applet 2's original constraint set had two valid mathematical solutions; this was caught during the build process and
-      patched by adding one more clue (a ≥ b) to the puzzle text — the full trail is in the activity log.</div>
-    </div>
-  </div>
-
-</div>
+  <h1>Divyanshu Medatwal</h1>
+  <p>Coming Soon!</p>
 </body>
 </html>
